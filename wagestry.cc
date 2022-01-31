@@ -16,7 +16,7 @@ const double MAX_HOURS = 70;
 int main(int argc, char const *argv[]) {
 
     //0. variable decalarations
-    double hours, rate, wages;
+    double hours, rate, wages, overtimewages, overtimerate, overtimehours;
     //1. input the hours
     cout << "Enter the number of hours: ";
     cin >> hours;
@@ -35,10 +35,19 @@ int main(int argc, char const *argv[]) {
        cout << "Error: rate must be between 0 and 20" << endl;
        exit(0);
     }
+    cout << "Enter overtime hourly rate: ";
+    cin >> overtimerate;
     
     //3. Calculations
     //calculate overtime pay
-    wages = hours * rate;
+    if ( hours > 40 ){
+        overtimehours = hours - 40;
+        hours = hours - overtimehours;
+        overtimewages = overtimehours * overtimerate;
+    }
+    else overtimewages = 0;
+
+    wages = (hours * rate) + overtimewages;
 
     //4. Output
     cout << fixed << setprecision(2);
