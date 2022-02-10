@@ -29,6 +29,19 @@ int main(int argc, char const *argv[])
     {
         cout << "Pin : ";
         cin >> pinnumber;
+
+        while (pinnumber != 1234)
+        {
+            ++pintries;
+            cout << "WRONG PIN, you have " << 3 - pintries << " tries left. Please try again : ";
+            cin >> pinnumber;
+            if (pintries > 1)
+            {
+                cout << "WRONG PIN, too many tries, your account has been locked";
+                return (0);
+            }
+        }
+
         while (pinnumber == 1234 && anothertransaction == true)
         {
             cout << "Enter the amount you wish to withdraw: $";
@@ -47,17 +60,6 @@ int main(int argc, char const *argv[])
             balance = currentaccountvalue;
             cout << "Your current balance is $" << currentaccountvalue << endl;
             break;
-        }
-        while (pinnumber != 1234)
-        {
-            ++pintries;
-            cout << "WRONG PIN, you have " << 3 - pintries << " tries left. Please try again : ";
-            cin >> pinnumber;
-            if (pintries > 3)
-            {
-                cout << "WRONG PIN, too many tries, your account has been locked";
-                return (0);
-            }
         }
 
         cout << "Another Transaction (y/n)? ";
